@@ -6,11 +6,18 @@ document.addEventListener("DOMContentLoaded", function () {
         .addEventListener("click", startGame);
     let gameBoardHeight = 4;
     let gameBoardWidth = 4;
-    let gameCardsAnimals = ["cow", "cow", "duck", "duck", "pig", "pig", "lamb", "lamb", "chicken", "chicken", "llama", "llama", "dog", "dog", "cat", "cat"]
+    let gameCardsAnimals = [
+        "cow",
+        "duck",
+        "pig",
+        "lamb",
+        "chicken",
+        "llama",
+        "dog",
+        "cat",
+    ];
 
     function startGame() {
-        console.log("start1 button clicked");
-
         // ensure gameBcontainer exists
         if (!gameBoardContainer) {
             console.error("gameBoardContainer element not found!");
@@ -20,6 +27,10 @@ document.addEventListener("DOMContentLoaded", function () {
         // clear previous game board if exists
         gameBoardContainer.innerHTML = "";
 
+        //randomise cards
+        let randomCardArray = assignGameCardsAtRandom(gameCardsAnimals);
+        let randomCardArrayIndex = 0;
+
         // create a matrices array (4x4 - 8unique)
         for (let row = 0; row < gameBoardHeight; row++) {
             const rowDiv = document.createElement("div");
@@ -28,18 +39,53 @@ document.addEventListener("DOMContentLoaded", function () {
             for (let column = 0; column < gameBoardWidth; column++) {
                 const cellDiv = document.createElement("div");
                 cellDiv.classList.add("cell");
+                cellDiv.classList.add(randomCardArray[randomCardArrayIndex]);
+                randomCardArrayIndex++;
                 rowDiv.appendChild(cellDiv);
             }
             gameBoardContainer.appendChild(rowDiv);
         }
-    // randomise allocation of unique card pairs into matrix
-
-    }
-
 
     // on click, flip card, remain unless reclicked
+        let cells = document.querySelectorAll(".cell");
+        for (let cell of cells) {
+            cell.innerHTML = "";
+            cell.classList.add("HIDDEN");
+            cell.addEventListener("click", function () {
+                if (cell.classList.contains("UNHIDDEN")) hideCardFace(cell);
+                else showCardFace(cell);
+            });
+        }
+    }
 
-    // on second click, flip card, if matching, remain visible
+    function assignGameCardsAtRandom(gameCards) {
+        // randomise allocation of unique card pairs into matrix (Fisher-Yates alg)
+        let doubledGameCards = [...gameCards, ...gameCards];
+
+        for (let i = doubledGameCards.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [doubledGameCards[i], doubledGameCards[j]] = [
+                doubledGameCards[j],
+                doubledGameCards[i],
+            ];
+        }
+
+        return doubledGameCards;
+    }
+
+    function showCardFace(currentCell) {
+        currentCell.innerHTML = `<p>${currentCell.classList[1]}</p>`;
+        currentCell.classList.add("UNHIDDEN");
+        currentCell.classList.remove("HIDDEN");
+    }
+
+        function hideCardFace(currentCell) {
+        currentCell.innerHTML = "";
+        currentCell.classList.add("HIDDEN");
+        currentCell.classList.remove("UNHIDDEN");
+    }
+
+    // on second click, flip second card, if matching, remain visible otherwise hide both cards
 
     // once all cards are flipped correctly - game over message - play again - change difficulty
 });
