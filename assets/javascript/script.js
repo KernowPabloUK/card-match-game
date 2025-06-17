@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // start game (once start game button is clicked)
+    //#region - Global variables
     let gameCardsAnimals = [
         "./assets/images/cow.gif",
         "./assets/images/duck.jpg",
@@ -21,14 +21,24 @@ document.addEventListener("DOMContentLoaded", function () {
         "0111",
         "1000",
     ];
+
     let cardTheme = null;
     let gameBoardHeight = 4;
     let gameBoardWidth = 4;
-
+    let anchorReloadSite = document.querySelector("a");
     let gameBoardContainer = document.querySelector("#gameBoardContainer");
     let cardThemeSelector = document.querySelector("#cardTheme");
     let buttonStartGame = document.querySelector("#buttonStartGame");
+    //#endregion
+
+    //#region - Main Event Listeners
+    anchorReloadSite.addEventListener("click", reloadSite);
     buttonStartGame.addEventListener("click", startGame);
+    //#endregion
+
+    function reloadSite() {
+        location.reload();
+    }
 
     function startGame() {
         document.querySelector("#gameBoardContainer").className = "";
@@ -52,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // clear previous game board if exists
         gameBoardContainer.innerHTML = "";
         buttonStartGame.innerHTML = "Restart the game?";
+        document.getElementById("loader").style.display = "none";
 
         //randomise cards
         let randomCardArray = assignGameCardsAtRandom(cardTheme);
@@ -147,9 +158,8 @@ document.addEventListener("DOMContentLoaded", function () {
         currentCell.classList.remove("UNHIDDEN");
     }
 
-    // once all cards are flipped correctly - game over message - play again - change difficulty
-
     function checkGameOver() {
+        // once all cards are flipped correctly - game over message - play again - change difficulty
         const allCards = document.querySelectorAll(".cell");
         const allMatched = Array.from(allCards).every((card) =>
             card.classList.contains("MATCHED")
@@ -168,5 +178,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+// TODO's
+//#region
 // TODO POST 6x6 18unique // TODO POST 8x8 32unique
 // TODO different themes
+//#endregion

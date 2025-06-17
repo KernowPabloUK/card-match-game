@@ -11,20 +11,23 @@
 <body>
     <div id="mainDiv">
         <header>
-            <h1>Matchy Matchy</h1>
-            <h2>A card matching game</h2>
+            <a href="#">
+                <h1>Matchy Matchy</h1>
+            </a>
+            <p>A card matching game</p>
+            <div>
+                <label for="cardTheme">Choose your theme:</label>
+                <select id="cardTheme" name="cardTheme" required>
+                    <option value="animals">Animals</option>
+                    <option value="binary">Binary</option>
+                </select>
+                <button type="button" id="buttonStartGame">Start the game</button>
+            </div>
         </header>
-        <label for="cardTheme">Choose your theme:</label>
-        <select id="cardTheme" name="cardTheme" required>
-            <option value="" disabled selected>Select theme</option>
-            <option value="animals">Animals</option>
-            <option value="binary">Binary</option>
-        </select>
-        <button type="button" id="buttonStartGame">Start the game</button>
+        <div id="loader">Choose a Theme!</div>
         <div id="gameBoardContainer"></div>
     </div>
-
-    <!-- how to play button - opens a modal -->
+    <!-- TODO - how to play button - opens a modal -->
     <footer>calculatedCode 2025</footer>
     <script src="./assets/javascript/script.js"></script>
 </body>

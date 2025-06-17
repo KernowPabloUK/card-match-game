@@ -1,8 +1,6 @@
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Londrina+Shadow&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&display=swap");
 
 html,
 body {
@@ -42,14 +40,21 @@ header {
     align-items: center;
     text-align: center;
     margin: 0;
+    font-family: "Love Ya Like A Sister", cursive;
     background-color: blanchedalmond;
 }
 
 h1 {
     margin-bottom: 0;
+    font-family: "Londrina Shadow", sans-serif;
 }
-h2 {
-    margin-bottom: 0;
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+header p {
+    margin: 0.1rem;
 }
 
 footer {
@@ -58,16 +63,26 @@ footer {
     align-items: center;
     margin-bottom: 0.5rem;
     margin-top: 0.1rem;
+    font-family: "Source Code Pro", monospace;
 }
 
 label {
-    margin-top: 0.3rem;
+    margin-top: 0.4rem;
     font-size: larger;
 }
 
+select {
+    font-family: "Love Ya Like A Sister", cursive;
+}
+option {
+    background-color: #6e8ca1;
+}
+
 button {
-    margin-top: 0.3rem;
+    margin-top: 0.4rem;
     font-size: larger;
+    font-family: "Love Ya Like A Sister", cursive;
+    background-color: #6e8ca1;
 }
 
 #mainDiv {
@@ -108,6 +123,44 @@ button {
     align-items: center;
     font-size: 3rem;
     background-color: azure;
+}
+
+#loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10rem;
+    border: 3rem solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 3rem solid #6e8ca1;
+    width: 15rem;
+    height: 15rem;
+    -webkit-animation: spin 3s linear infinite; /* Safari */
+    animation: spin 3s linear infinite;
+    font-family: "Londrina Shadow", sans-serif;
+    font-weight: 700;
+    font-size: x-large;
+    box-shadow: 0 0 30px 8px rgba(110, 140, 161, 0.4),
+        0 8px 24px 0 rgba(0, 0, 0, 0.18);
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .MATCHED {
