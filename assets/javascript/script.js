@@ -31,6 +31,18 @@ document.addEventListener("DOMContentLoaded", function () {
     buttonStartGame.addEventListener("click", startGame);
 
     function startGame() {
+        document.querySelector("#gameBoardContainer").className = "";
+        if (cardThemeSelector.value === "animals") {
+            cardTheme = gameCardsAnimals;
+        } else if (cardThemeSelector.value === "binary") {
+            cardTheme = gameCardsBinary;
+        } else {
+            cardTheme = gameCardsAnimals;
+        }
+        document
+            .querySelector("#gameBoardContainer")
+            .classList.add(cardThemeSelector.value);
+
         // ensure gameBoardContainer exists
         if (!gameBoardContainer) {
             console.error("gameBoardContainer element not found!");
@@ -40,16 +52,6 @@ document.addEventListener("DOMContentLoaded", function () {
         // clear previous game board if exists
         gameBoardContainer.innerHTML = "";
         buttonStartGame.innerHTML = "Restart the game?";
-
-        document.querySelector("#gameBoardContainer").className = "";
-        if (cardThemeSelector.value === "animals") {
-            cardTheme = gameCardsAnimals;
-        } else if (cardThemeSelector.value === "binary")
-            cardTheme = gameCardsBinary;
-        else cardTheme = gameCardsAnimals;
-        document
-            .querySelector("#gameBoardContainer")
-            .classList.add(cardThemeSelector.value);
 
         //randomise cards
         let randomCardArray = assignGameCardsAtRandom(cardTheme);
