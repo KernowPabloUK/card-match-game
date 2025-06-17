@@ -75,7 +75,7 @@ select {
     font-family: "Love Ya Like A Sister", cursive;
 }
 option {
-    background-color: #6e8ca1;
+    background-color: rgb(110, 140, 161, 0.75);
 }
 
 button {
@@ -100,6 +100,8 @@ button {
 #gameBoardContainer {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin: 1rem 0;
     flex: 1 1 auto;
     max-height: 100%;
@@ -130,13 +132,12 @@ button {
     justify-content: center;
     align-items: center;
     margin-top: 10rem;
-    border: 3rem solid #f3f3f3;
+    border: 3rem solid #6e8ca1;
     border-radius: 50%;
-    border-top: 3rem solid #6e8ca1;
     width: 15rem;
     height: 15rem;
-    -webkit-animation: spin 3s linear infinite; /* Safari */
-    animation: spin 3s linear infinite;
+    -webkit-animation: spin 3.6s linear infinite; /* Safari */
+    animation: spin 3.6s linear infinite;
     font-family: "Londrina Shadow", sans-serif;
     font-weight: 700;
     font-size: x-large;
