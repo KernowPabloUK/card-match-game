@@ -2,6 +2,10 @@
 
 ## A play project using Javascript to create a basic flip card game - just to see if I can
 
+### Responsive Image
+
+![Responsive Image](<assets/images/readme-images/Screenshot 2025-06-17 153842.png>)
+
 ### The 'Homepage'
 
 ![Homepage](<assets/images/readme-images/Screenshot 2025-06-17 152427.png>)
