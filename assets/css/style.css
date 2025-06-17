@@ -16,6 +16,20 @@ body {
     flex-direction: column;
 }
 
+.animals {
+    background: url("../images/farmyard-background.jpg") no-repeat center center;
+    background-size: cover;
+    height: 100dvh;
+    width: 100dvw;
+}
+
+.binary {
+    background: url("../images/binary-background.gif") no-repeat center center;
+    background-size: cover;
+    height: 100dvh;
+    width: 100dvw;
+}
+
 header {
     display: flex;
     flex-direction: column;
@@ -23,6 +37,7 @@ header {
     align-items: center;
     text-align: center;
     margin: 0;
+    background-color: blanchedalmond;
 }
 
 h1 {
@@ -96,4 +111,11 @@ button {
 
 .UNMATCHED {
     background-color: red;
+}
+
+img {
+    width: 10rem;
+    height: 10rem;
+    margin: 0.68rem;
+    border: 2px solid #000;
 }

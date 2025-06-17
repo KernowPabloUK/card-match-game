@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
     // start game (once start game button is clicked)
     let gameCardsAnimals = [
-        "cow",
-        "duck",
-        "pig",
-        "lamb",
-        "chicken",
-        "llama",
-        "dog",
-        "cat",
+        "./assets/images/cow.gif",
+        "./assets/images/duck.jpg",
+        "./assets/images/pig.jpg",
+        "./assets/images/lamb.png",
+        "./assets/images/chicken.jpg",
+        "./assets/images/llama.jpg",
+        "./assets/images/dog.jpg",
+        "./assets/images/cat.webp",
     ];
 
     let gameCardsBinary = [
@@ -31,12 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     buttonStartGame.addEventListener("click", startGame);
 
     function startGame() {
-        if (cardThemeSelector.value === "animals") cardTheme = gameCardsAnimals;
-        else if (cardThemeSelector.value === "binary")
-            cardTheme = gameCardsBinary;
-        else cardTheme = gameCardsAnimals;
-
-        // ensure gameBcontainer exists
+        // ensure gameBoardContainer exists
         if (!gameBoardContainer) {
             console.error("gameBoardContainer element not found!");
             return;
@@ -45,6 +40,16 @@ document.addEventListener("DOMContentLoaded", function () {
         // clear previous game board if exists
         gameBoardContainer.innerHTML = "";
         buttonStartGame.innerHTML = "Restart the game?";
+
+        document.querySelector("#gameBoardContainer").className = "";
+        if (cardThemeSelector.value === "animals") {
+            cardTheme = gameCardsAnimals;
+        } else if (cardThemeSelector.value === "binary")
+            cardTheme = gameCardsBinary;
+        else cardTheme = gameCardsAnimals;
+        document
+            .querySelector("#gameBoardContainer")
+            .classList.add(cardThemeSelector.value);
 
         //randomise cards
         let randomCardArray = assignGameCardsAtRandom(cardTheme);
@@ -125,7 +130,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function showCardFace(currentCell) {
-        currentCell.innerHTML = `<p>${currentCell.classList[1]}</p>`;
+        if (cardTheme === gameCardsAnimals) {
+            currentCell.innerHTML = `<img src="${currentCell.classList[1]}" alt="${currentCell.classList[1]}">`;
+        } else {
+            currentCell.innerHTML = `<p>${currentCell.classList[1]}</p>`;
+        }
         currentCell.classList.add("UNHIDDEN");
         currentCell.classList.remove("HIDDEN");
     }
