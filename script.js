@@ -46,14 +46,46 @@ document.addEventListener("DOMContentLoaded", function () {
             gameBoardContainer.appendChild(rowDiv);
         }
 
-    // on click, flip card, remain unless reclicked
+        // on click, flip card, remain unless reclicked
         let cells = document.querySelectorAll(".cell");
+        let firstCard = null;
+        let secondCard = null;
+        let lockBoard = false;
+
         for (let cell of cells) {
             cell.innerHTML = "";
             cell.classList.add("HIDDEN");
+
             cell.addEventListener("click", function () {
-                if (cell.classList.contains("UNHIDDEN")) hideCardFace(cell);
-                else showCardFace(cell);
+                if (lockBoard || cell.classList.contains("UNHIDDEN")) return;
+                showCardFace(cell);
+                if (!firstCard) {
+                    firstCard = cell;
+                    return;
+                }
+                secondCard = cell;
+                lockBoard = true;
+                // on second click, flip second card, if matching, remain visible otherwise hide both cards
+                if (firstCard.classList[1] === secondCard.classList[1]) {
+                    firstCard.classList.add("MATCHED");
+                    secondCard.classList.add("MATCHED");
+                    firstCard = null;
+                    secondCard = null;
+                    lockBoard = false;
+                    checkGameOver();
+                } else {
+                    firstCard.classList.add("UNMATCHED");
+                    secondCard.classList.add("UNMATCHED");
+                    setTimeout(() => {
+                        hideCardFace(firstCard);
+                        hideCardFace(secondCard);
+                        firstCard.classList.remove("UNMATCHED");
+                        secondCard.classList.remove("UNMATCHED");
+                        firstCard = null;
+                        secondCard = null;
+                        lockBoard = false;
+                    }, 700);
+                }
             });
         }
     }
@@ -79,15 +111,31 @@ document.addEventListener("DOMContentLoaded", function () {
         currentCell.classList.remove("HIDDEN");
     }
 
-        function hideCardFace(currentCell) {
+    function hideCardFace(currentCell) {
         currentCell.innerHTML = "";
         currentCell.classList.add("HIDDEN");
         currentCell.classList.remove("UNHIDDEN");
     }
 
-    // on second click, flip second card, if matching, remain visible otherwise hide both cards
-
     // once all cards are flipped correctly - game over message - play again - change difficulty
+
+    function checkGameOver() {
+        const allCards = document.querySelectorAll(".cell");
+        const allMatched = Array.from(allCards).every((card) =>
+            card.classList.contains("MATCHED")
+        );
+        if (allMatched) {
+            setTimeout(() => {
+                if (
+                    confirm(
+                        "Congratulations! You matched all cards! Play again?"
+                    )
+                ) {
+                    startGame();
+                }
+            }, 300);
+        }
+    }
 });
 
 // TODO POST 6x6 18unique // TODO POST 8x8 32unique
