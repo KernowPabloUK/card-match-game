@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     // start game (once start game button is clicked)
     let gameBoardContainer = document.querySelector("#gameBoardContainer");
-    document
-        .querySelector("#buttonStartGame")
-        .addEventListener("click", startGame);
+    let buttonStartGame = document.querySelector("#buttonStartGame");
+    buttonStartGame.addEventListener("click", startGame);
     let gameBoardHeight = 4;
     let gameBoardWidth = 4;
     let gameCardsAnimals = [
@@ -26,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // clear previous game board if exists
         gameBoardContainer.innerHTML = "";
+        buttonStartGame.innerHTML = "Restart the game?";
 
         //randomise cards
         let randomCardArray = assignGameCardsAtRandom(gameCardsAnimals);
