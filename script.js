@@ -1,10 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
     // start game (once start game button is clicked)
-    let gameBoardContainer = document.querySelector("#gameBoardContainer");
-    let buttonStartGame = document.querySelector("#buttonStartGame");
-    buttonStartGame.addEventListener("click", startGame);
-    let gameBoardHeight = 4;
-    let gameBoardWidth = 4;
     let gameCardsAnimals = [
         "cow",
         "duck",
@@ -16,7 +11,31 @@ document.addEventListener("DOMContentLoaded", function () {
         "cat",
     ];
 
+    let gameCardsBinary = [
+        "0001",
+        "0010",
+        "0011",
+        "0100",
+        "0101",
+        "0110",
+        "0111",
+        "1000",
+    ];
+    let cardTheme = null;
+    let gameBoardHeight = 4;
+    let gameBoardWidth = 4;
+
+    let gameBoardContainer = document.querySelector("#gameBoardContainer");
+    let cardThemeSelector = document.querySelector("#cardTheme");
+    let buttonStartGame = document.querySelector("#buttonStartGame");
+    buttonStartGame.addEventListener("click", startGame);
+
     function startGame() {
+        if (cardThemeSelector.value === "animals") cardTheme = gameCardsAnimals;
+        else if (cardThemeSelector.value === "binary")
+            cardTheme = gameCardsBinary;
+        else cardTheme = gameCardsAnimals;
+
         // ensure gameBcontainer exists
         if (!gameBoardContainer) {
             console.error("gameBoardContainer element not found!");
@@ -28,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
         buttonStartGame.innerHTML = "Restart the game?";
 
         //randomise cards
-        let randomCardArray = assignGameCardsAtRandom(gameCardsAnimals);
+        let randomCardArray = assignGameCardsAtRandom(cardTheme);
         let randomCardArrayIndex = 0;
 
         // create a matrices array (4x4 - 8unique)
