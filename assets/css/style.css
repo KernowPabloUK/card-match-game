@@ -99,8 +99,8 @@ button {
 }
 
 .cell {
-    width: 14rem;
-    height: 14rem;
+    width: 12rem;
+    height: 12rem;
     margin: 0.68rem;
     border: 2px solid #000;
     display: flex;
@@ -119,8 +119,8 @@ button {
 }
 
 img {
-    width: 12rem;
-    height: 12rem;
+    width: 10rem;
+    height: 10rem;
     margin: 0.68rem;
     border: 2px solid #000;
 }
@@ -129,6 +129,9 @@ img {
     .row {
         flex-wrap: wrap;
         justify-content: center;
+        max-width: 68vw;
+        margin-left: auto;
+        margin-right: auto;
     }
     .cell {
         width: 45vw;
@@ -145,7 +148,30 @@ img {
     }
 }
 
-@media screen and (min-width: 426px) and (max-width: 769px) {
+@media screen and (min-width: 427px) and (max-width: 513px) {
+    .row {
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 68vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .cell {
+        width: 45vw;
+        height: 45vw;
+        max-width: 140px;
+        max-height: 140px;
+        font-size: medium;
+    }
+    img {
+        width: 36vw;
+        height: 36vw;
+        max-width: 120px;
+        max-height: 120px;
+    }
+}
+
+@media screen and (min-width: 514px) and (max-width: 769px) {
     .row {
         flex-wrap: wrap;
         justify-content: center;
