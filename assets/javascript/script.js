@@ -177,9 +177,3 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
-
-// TODO's
-//#region
-// TODO POST 6x6 18unique // TODO POST 8x8 32unique
-// TODO different themes
-//#endregion
